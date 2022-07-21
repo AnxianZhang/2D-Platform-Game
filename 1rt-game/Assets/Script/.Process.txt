@@ -1,0 +1,4 @@
+﻿Component added:
+	- Rigidbody 2D:			apply physics, enable to move the player
+	- Box Collider 2D:	    apply an hit-box
+	- Tilesmap Collider 2D: allow to not go through the envroment

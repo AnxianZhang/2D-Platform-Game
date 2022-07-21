@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float moveSpeed;
+    public Rigidbody rB;
+    private Vector3 velocity = Vector3.zero;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
     }
