@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
 
+    public Animator animator;
+
+    public SpriteRenderer sR; // player visual
+
     public float moveSpeed;
     public float jumpForce;
 
@@ -25,14 +29,25 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
         float HMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         movePlayer(HMovement);
+
+        flip();
+        float playerVelocity = Mathf.Abs(rB.velocity.x); // absolut value
+        animator.SetFloat("Speed", playerVelocity);
     }
 
     void movePlayer(float _HMovement)
     {
         Vector3 targetVelocity = new Vector2(_HMovement, rB.velocity.y);
-        rB.velocity = Vector3.SmoothDamp(rB.velocity, targetVelocity, ref velocity, .05f); // .05f = 0.05s 
+        rB.velocity = Vector3.SmoothDamp(rB.velocity, targetVelocity, ref velocity, 0.05f);
+    }
+
+    void flip()
+    {
+        if (rB.velocity.x > 0.1)
+            sR.flipX = false;
+        else if (rB.velocity.x < -0.1)
+            sR.flipX = true;
     }
 }
