@@ -6,6 +6,7 @@ public class SerpentPatrol : MonoBehaviour
 {
     public float Speed;
     public Transform[] wayPoints;
+    public SpriteRenderer sR;
 
     private Transform target;
     private int idxNextWayPoint;
@@ -26,6 +27,17 @@ public class SerpentPatrol : MonoBehaviour
         {
             idxNextWayPoint = Random.Range(0, wayPoints.Length);
             target = wayPoints[idxNextWayPoint];
+            flip();
         }
+    }
+
+    void flip()
+    {
+        float speed = (target.position.x - transform.position.x) / Time.deltaTime;
+        print(speed + "\n");
+        if (speed < 0.1)
+            sR.flipX = true;
+        else if (speed > -0.1)
+            sR.flipX = false;
     }
 }
