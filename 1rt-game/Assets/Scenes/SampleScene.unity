@@ -21673,7 +21673,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 80
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -21689,7 +21689,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b903c65b357fd334f9f6bdb491073d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healtBar: {fileID: 1484620786}
+  healthBar: {fileID: 1484620786}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.9254902, g: 0.20392153, b: 0.2111336, a: 1}
+    key1: {r: 0.9622642, g: 0.6998117, b: 0.20425421, a: 1}
+    key2: {r: 0.09313814, g: 0.8584906, b: 0.22431085, a: 0}
+    key3: {r: 0.09313814, g: 0.8584906, b: 0.22431085, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 21843
+    ctime1: 43686
+    ctime2: 65535
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 1534587778}
 --- !u!1 &1534587776
 GameObject:
   m_ObjectHideFlags: 0
