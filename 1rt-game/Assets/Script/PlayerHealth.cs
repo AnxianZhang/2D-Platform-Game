@@ -7,12 +7,14 @@ public class PlayerHealth : MonoBehaviour
     private uint maxHealth = 100;
     public uint currentHealth;
 
-    public HealthBar healtBar;
+    public HealthBar healthBar;
 
     private void Start()
     {
         currentHealth = maxHealth;
-        healtBar.initHealth(currentHealth);
+        healthBar.initHealth(currentHealth);
+        currentHealth -= 80;
+        healthBar.setHealth(currentHealth);
     }
 
     void Update()
@@ -29,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         //if (currentHealth - amount > 0)
         //{
             currentHealth -= amount;
-            healtBar.setHealth(currentHealth);
+            healthBar.setHealth(currentHealth);
         //}
     }
 }
