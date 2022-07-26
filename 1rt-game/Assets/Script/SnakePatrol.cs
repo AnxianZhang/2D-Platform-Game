@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SerpentPatrol : MonoBehaviour
+public class SnakePatrol : MonoBehaviour
 {
     public float Speed;
     public Transform[] wayPoints;
@@ -34,7 +34,6 @@ public class SerpentPatrol : MonoBehaviour
     void flip()
     {
         float speed = (target.position.x - transform.position.x) / Time.deltaTime;
-        print(speed + "\n");
         if (speed < 0.1)
             sR.flipX = true;
         else if (speed > -0.1)

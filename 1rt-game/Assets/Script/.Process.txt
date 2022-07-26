@@ -1,5 +1,7 @@
 ﻿Component added:
-	- Rigidbody 2D:			apply physics, enable to move the player
-	- Box Collider 2D:	    apply an hit-box
+	- Rigidbody 2D: apply physics, enable to move the player
+	- Box Collider 2D: apply an hit-box
 			- if "Is Triger" is apply --> means that this GO can be crossed by another one
 	- Tilesmap Collider 2D: allow to not go through the enviroment
+	- Canvas: for image in front of all other components
+			- the higher the image in the hierarchy, the further back the images will be
