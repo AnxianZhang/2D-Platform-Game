@@ -1870,7 +1870,7 @@ GameObject:
   - component: {fileID: 724659607}
   - component: {fileID: 724659610}
   m_Layer: 0
-  m_Name: Serpent
+  m_Name: Snake1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2067,7 +2067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1099085783}
   m_Layer: 0
-  m_Name: Serpent1
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21595,6 +21595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484620785}
   - component: {fileID: 1484620786}
+  - component: {fileID: 1484620787}
   m_Layer: 5
   m_Name: HealtBar
   m_TagString: Untagged
@@ -21676,6 +21677,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1484620787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484620784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b903c65b357fd334f9f6bdb491073d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healtBar: {fileID: 1484620786}
 --- !u!1 &1534587776
 GameObject:
   m_ObjectHideFlags: 0
@@ -21763,6 +21777,7 @@ GameObject:
   - component: {fileID: 1580629010}
   - component: {fileID: 1580629009}
   - component: {fileID: 1580629008}
+  - component: {fileID: 1580629013}
   - component: {fileID: 1580629007}
   - component: {fileID: 1580629006}
   - component: {fileID: 1580629011}
@@ -21945,6 +21960,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1580629013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580629005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13ed483625b4b34591613dca68771a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  healthBar: {fileID: 1484620787}
 --- !u!1 &1586785285
 GameObject:
   m_ObjectHideFlags: 0

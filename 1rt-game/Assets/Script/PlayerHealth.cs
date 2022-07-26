@@ -13,25 +13,22 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.initHealth(currentHealth);
-        currentHealth -= 80;
-        healthBar.setHealth(currentHealth);
+        //currentHealth -= 80;
+        //healthBar.setHealth(currentHealth);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            print("soir");
-            takeDamage(5);
-        }
+        if (Input.GetKeyDown(KeyCode.H)) //test
+            takeDamage(20);
     }
 
-    void takeDamage(uint amount)
+    public void takeDamage(uint amount)
     {
-        //if (currentHealth - amount > 0)
-        //{
+        if (currentHealth - amount > 0)
+        {
             currentHealth -= amount;
             healthBar.setHealth(currentHealth);
-        //}
+        }
     }
 }

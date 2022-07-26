@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         isOnGroud = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position); // Checks if a Collider falls within a rectangular area
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isOnGroud)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isOnGroud)
             rB.AddForce(new Vector2(0f, jumpForce));
     }
     void FixedUpdate()
