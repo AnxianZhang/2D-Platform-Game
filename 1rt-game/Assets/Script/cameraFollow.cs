@@ -12,8 +12,8 @@ public class cameraFollow : MonoBehaviour
 
     void Update()
     {
-        Vector3 newCameraPos = new Vector3(player.transform.position.x, player.transform.position.y) + posOffSet;
-        transform.position = Vector3.SmoothDamp(transform.position, newCameraPos, ref velocity, timeOffSet);
+        Vector3 newCameraPos = new Vector3(this.player.transform.position.x, this.player.transform.position.y) + this.posOffSet;
+        this.transform.position = Vector3.SmoothDamp(transform.position, newCameraPos, ref this.velocity, this.timeOffSet);
                                               //    actual pos        new pos   need to be here  the delay
     }
 }

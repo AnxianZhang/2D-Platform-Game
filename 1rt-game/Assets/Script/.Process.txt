@@ -6,3 +6,7 @@
 	- Tilesmap Collider 2D: allow to not go through the enviroment
 	- Canvas: for image in front of all other components
 			- the higher the image in the hierarchy, the further back the images will be
+	
+	- Physics Material 2D: to patch the friction (the quantity which prevents surfaces from sliding off each other)
+
+	- LayerMask: for ignoring a few gO

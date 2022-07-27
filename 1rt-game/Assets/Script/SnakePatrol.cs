@@ -14,29 +14,29 @@ public class SnakePatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = wayPoints[0];
+        this.target = this.wayPoints[0];
     }
 
     // Update is called once per frame
     void Update()
     { 
-        Vector3 distance = target.position - transform.position;
-        transform.Translate(distance.normalized * Speed * Time.deltaTime, Space.World);
+        Vector3 distance = this.target.position - this.transform.position;
+        this.transform.Translate(distance.normalized * this.Speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(target.position, transform.position) < 0.3f)
+        if (Vector3.Distance(this.target.position, this.transform.position) < 0.3f)
         {
-            idxNextWayPoint = Random.Range(0, wayPoints.Length);
-            target = wayPoints[idxNextWayPoint];
+            this.idxNextWayPoint = Random.Range(0, this.wayPoints.Length);
+            this.target = wayPoints[this.idxNextWayPoint];
             flip();
         }
     }
 
     void flip()
     {
-        float speed = (target.position.x - transform.position.x) / Time.deltaTime;
+        float speed = (this.target.position.x - this.transform.position.x) / Time.deltaTime;
         if (speed < 0.1)
-            sR.flipX = true;
+            this.sR.flipX = true;
         else if (speed > -0.1)
-            sR.flipX = false;
+            this.sR.flipX = false;
     }
 }
