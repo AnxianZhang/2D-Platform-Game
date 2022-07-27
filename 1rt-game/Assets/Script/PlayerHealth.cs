@@ -7,14 +7,17 @@ public class PlayerHealth : MonoBehaviour
     private uint maxHealth = 100;
     public uint currentHealth;
 
+    public bool isImun = false;
+    private float waitingSecong = .125f;
+    private float imunTime = .8f;
+
+    public SpriteRenderer sR;
     public HealthBar healthBar;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.initHealth(currentHealth);
-        //currentHealth -= 80;
-        //healthBar.setHealth(currentHealth);
     }
 
     void Update()
@@ -25,10 +28,31 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(uint amount)
     {
-        if (currentHealth - amount > 0)
+        if (!isImun)
+            if (currentHealth - amount > 0)
+            {
+                currentHealth -= amount;
+                healthBar.setHealth(currentHealth);
+                StartCoroutine(imunityTime());
+                StartCoroutine(imunity());
+            }
+    }
+
+    private IEnumerator imunity()
+    {
+        isImun = true;
+        while (isImun)
         {
-            currentHealth -= amount;
-            healthBar.setHealth(currentHealth);
+            sR.color = new Color(1, 1, 1, 0);
+            yield return new WaitForSeconds(waitingSecong);
+            sR.color = new Color(1, 1, 1, 1);
+            yield return new WaitForSeconds(waitingSecong);
         }
+    }
+
+    private IEnumerator imunityTime()
+    {
+        yield return new WaitForSeconds(imunTime);
+        isImun = false;
     }
 }

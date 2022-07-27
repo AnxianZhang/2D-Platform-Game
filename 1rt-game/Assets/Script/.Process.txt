@@ -1,5 +1,6 @@
 ﻿Component added:
 	- Rigidbody 2D: apply physics, enable to move the player
+			- Interpolat param: none to extrapolate (with that the player will be able de "know" the position of his next frame)
 	- Box Collider 2D: apply an hit-box
 			- if "Is Triger" is apply --> means that this GO can be crossed by another one
 	- Tilesmap Collider 2D: allow to not go through the enviroment

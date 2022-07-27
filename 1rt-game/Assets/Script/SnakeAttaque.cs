@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class SnakeAttaque : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
-    private uint damageDeal = 5;
+    private const uint DAMAGEDEAL = 5;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("bonjour");
-        if (collision.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
         {
-            playerHealth.takeDamage(damageDeal);
+            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
+            playerHealth.takeDamage(DAMAGEDEAL);
         }
     }
 }

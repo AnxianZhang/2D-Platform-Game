@@ -1869,6 +1869,7 @@ GameObject:
   - component: {fileID: 724659608}
   - component: {fileID: 724659607}
   - component: {fileID: 724659610}
+  - component: {fileID: 724659611}
   m_Layer: 0
   m_Name: Snake1
   m_TagString: Untagged
@@ -2026,6 +2027,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &724659611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724659604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bb1d07a3fea894cade689e22356879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &759030646
 GameObject:
   m_ObjectHideFlags: 0
@@ -22003,6 +22016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
+  isImun: 0
+  sR: {fileID: 1580629009}
   healthBar: {fileID: 1484620787}
 --- !u!1 &1586785285
 GameObject:
