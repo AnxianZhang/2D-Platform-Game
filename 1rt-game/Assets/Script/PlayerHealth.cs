@@ -49,8 +49,7 @@ public class PlayerHealth : MonoBehaviour
             this.sR.color = new Color(1, 1, 1, 1);
             yield return new WaitForSeconds(WAITIING_TIME);
         }
-    }
-
+   
     private IEnumerator imunityTime()
     {
         yield return new WaitForSeconds(IMUN_TIME);
