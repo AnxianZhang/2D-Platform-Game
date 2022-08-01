@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Rigidbody2D rB;
+    private const float GROUD_CHECK_RADIUS = .36f;
+    private const float MOVE_SPEED = 250;
+    private const float JUMP_FORCE = 250;
 
-    public Transform groundCheck;
-    public float groundCheckRadius;
     public LayerMask ignoreLayer;
+    public Transform groundCheck; // this attribut in public is necessary, otherwise OnDrawGizmos will be unuseble
 
-    public Animator animator;
-
-    public SpriteRenderer sR; // player visual
-
-    public float moveSpeed;
-    public float jumpForce;
+    private Rigidbody2D rB;
+    private Animator animator;
+    private SpriteRenderer sR; // player visual
 
     private bool isJumping;
     private bool isOnGroud;
 
-    private float HMovement;
+    private Vector3 velocity;
 
-    private Vector3 velocity = Vector3.zero; // initialize to (0, 0, 0) 
+    private void Start()
+    {
+        this.rB = gameObject.GetComponent<Rigidbody2D>();
+        this.groundCheck = transform.GetChild(0).GetComponentInChildren<Transform>();
+        this.animator = gameObject.GetComponent<Animator>();
+        this.sR = gameObject.GetComponent<SpriteRenderer>();
+        this.velocity = Vector3.zero;// initialize to (0, 0, 0) 
+    }
 
     private void Update() // input is always here
     {
@@ -35,24 +40,24 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate() // in relation with physics ex: all madifiction with rigidbody (e.g velocity)
     {
-        this.HMovement = Input.GetAxis("Horizontal") * this.moveSpeed * Time.deltaTime;
+        float hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED * Time.deltaTime;
 
         //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
-        this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, ignoreLayer); // Checks if a Collider falls within a circle area
+        this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
 
-        movePlayer();
+        movePlayer(hMovement);
     }
 
-    void movePlayer()
+    void movePlayer(float _hMovement)
     {
         
         if (this.isJumping && this.isOnGroud)
         {
-            this.rB.AddForce(new Vector2(0f, this.jumpForce));
+            this.rB.AddForce(new Vector2(0f, JUMP_FORCE));
             this.isJumping = false;
         }
 
-        Vector3 targetVelocity = new Vector2(this.HMovement, this.rB.velocity.y);
+        Vector3 targetVelocity = new Vector2(_hMovement, this.rB.velocity.y);
         this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
     }
 
@@ -67,6 +72,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, GROUD_CHECK_RADIUS);
     }
 }

@@ -5,19 +5,21 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     private uint maxHealth = 100;
-    public uint currentHealth;
+    private uint currentHealth;
 
-    public bool isImun = false;
+    private bool isImun = false;
     private const float WAITIING_TIME = .125f;
     private const float IMUN_TIME = .8f;
 
-    public SpriteRenderer sR;
-    public HealthBar healthBar;
+    private SpriteRenderer sR;
+    private HealthBar healthBar;
 
-    private void Start()
+    private void Awake()
     {
         this.currentHealth = this.maxHealth;
+        this.healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         this.healthBar.initHealth(this.currentHealth);
+        this.sR = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()

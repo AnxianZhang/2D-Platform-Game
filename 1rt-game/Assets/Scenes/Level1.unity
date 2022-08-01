@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 388943635}
   m_Layer: 5
   m_Name: CoinsAmount
-  m_TagString: Untagged
+  m_TagString: Coins
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2728,8 +2728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92571d91ee5a3d4a8f813cf7592d3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1580629005}
-  timeOffSet: 0.2
 --- !u!4 &776458475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7179767516159594218, guid: e47a29a15e13161488b7b4e281d47c6f, type: 3}
@@ -2880,8 +2878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc923b752384ad45b12364757dd3e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbCoins: 0
-  showCoins: {fileID: 87655972}
 --- !u!4 &989729572
 Transform:
   m_ObjectHideFlags: 0
@@ -2966,7 +2962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad9b548ef76c46e4fb4e1e22a4e8d593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadSys: {fileID: 0}
 --- !u!61 &1107475162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2980,7 +2975,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.31893802}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2991,7 +2986,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.36209205}
   m_EdgeRadius: 0
 --- !u!212 &1107475163
 SpriteRenderer:
@@ -34835,7 +34830,7 @@ GameObject:
   - component: {fileID: 1484620787}
   m_Layer: 5
   m_Name: HealtBar
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34910,7 +34905,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -34926,7 +34921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b903c65b357fd334f9f6bdb491073d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 1484620786}
   gradient:
     serializedVersion: 2
     key0: {r: 0.9254902, g: 0.20392153, b: 0.2111336, a: 1}
@@ -34957,6 +34951,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 1534587778}
+  healthBar: {fileID: 1484620786}
 --- !u!1 &1534587776
 GameObject:
   m_ObjectHideFlags: 0
@@ -37338,6 +37333,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1099085783}
     m_Modifications:
+    - target: {fileID: 7943156905862263856, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.36548138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943156905862263856, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.08978379
+      objectReference: {fileID: 0}
     - target: {fileID: 7943156906095764096, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
       propertyPath: m_Name
       value: Snake
@@ -37456,6 +37459,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1099085783}
     m_Modifications:
+    - target: {fileID: 7943156905862263856, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
+      propertyPath: m_Size.x
+      value: 0.358325
+      objectReference: {fileID: 0}
+    - target: {fileID: 7943156905862263856, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.08620569
+      objectReference: {fileID: 0}
     - target: {fileID: 7943156906095764096, guid: 31e38f3b35b25e943860484d8d0dd9d9, type: 3}
       propertyPath: m_Name
       value: Snake
@@ -37523,6 +37534,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1484620787}
+    - target: {fileID: 8298022752711526453, guid: 9a29746831e28694d8a43d3fdcc14ebf, type: 3}
+      propertyPath: ignoreLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8298022752711526455, guid: 9a29746831e28694d8a43d3fdcc14ebf, type: 3}
       propertyPath: m_RootOrder
       value: 2

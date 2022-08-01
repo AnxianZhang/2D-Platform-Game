@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public uint nbCoins = 0;
+    private uint nbCoins = 0;
 
-    public Text showCoins;
+    private Text showCoins;
 
     private static Inventory instance;
 
@@ -21,6 +21,11 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        this.showCoins = GameObject.FindGameObjectWithTag("Coins").GetComponentInChildren<Text>();
+    }
+
     public static Inventory getInventory()
     {
         return instance;
@@ -29,6 +34,6 @@ public class Inventory : MonoBehaviour
     public void addCoins(uint amoutn)
     {
         this.nbCoins += amoutn;
-        showCoins.text = nbCoins.ToString();
+        this.showCoins.text = nbCoins.ToString();
     }
 }

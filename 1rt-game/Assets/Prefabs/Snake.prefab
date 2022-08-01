@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.034888536, y: -0.028953126}
+  m_Offset: {x: -0.08620569, y: -0.028953126}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25569075, y: 0.036576916}
+  m_Size: {x: 0.358325, y: 0.036576916}
   m_EdgeRadius: 0
 --- !u!114 &7943156905862263857
 MonoBehaviour:
@@ -71,7 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941a588102433354989185fa3aff9c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToDestroy: {fileID: 7943156906095764096}
 --- !u!1 &7943156905906827778
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,14 +314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35b49c0d96978eb4092ca4409bc049b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1.3
   wayPoints:
   - {fileID: 7943156907080116114}
   - {fileID: 7943156906184157191}
   - {fileID: 7943156905906827779}
   - {fileID: 7943156907125806002}
   - {fileID: 7943156907693612070}
-  sR: {fileID: 7943156906439872143}
 --- !u!95 &7943156906439872128
 Animator:
   serializedVersion: 4

@@ -5,9 +5,16 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthBar;
     public Gradient gradient;
     public Image fill;
+
+    public Slider healthBar;
+
+    // doesn't work when healthBar attribut is in private, whyyyy ???
+    //private void Awake()
+    //{
+    //    this.healthBar = gameObject.GetComponent<Slider>();
+    //}
 
     public void initHealth(uint amount)
     {
@@ -20,7 +27,6 @@ public class HealthBar : MonoBehaviour
     public void setHealth(uint amount)
     {
         this.healthBar.value = amount;
-
         this.fill.color = gradient.Evaluate(this.healthBar.normalizedValue);
     }
 }

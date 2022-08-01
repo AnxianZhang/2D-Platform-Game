@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SnakePatrol : MonoBehaviour
 {
-    public float Speed;
     public Transform[] wayPoints;
-    public SpriteRenderer sR;
+    
+    private SpriteRenderer sR;
+    private const float SPEED = 1.3f;
 
     private Transform target;
     private int idxNextWayPoint;
@@ -14,6 +15,8 @@ public class SnakePatrol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        this.sR = gameObject.GetComponent<SpriteRenderer>();
         this.target = this.wayPoints[0];
     }
 
@@ -21,7 +24,7 @@ public class SnakePatrol : MonoBehaviour
     void Update()
     { 
         Vector3 distance = this.target.position - this.transform.position;
-        this.transform.Translate(distance.normalized * this.Speed * Time.deltaTime, Space.World);
+        this.transform.Translate(distance.normalized * SPEED * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(this.target.position, this.transform.position) < 0.3f)
         {

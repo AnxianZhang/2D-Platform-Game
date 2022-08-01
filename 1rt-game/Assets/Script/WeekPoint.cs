@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class WeekPoint : MonoBehaviour
 {
-    public GameObject objectToDestroy;
+    private GameObject objectToDestroy;
+
+    private void Start()
+    {
+        this.objectToDestroy = transform.parent.parent.gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
