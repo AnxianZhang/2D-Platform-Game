@@ -61,9 +61,9 @@ public class PlayerMovement : MonoBehaviour
 
     void flip()
     {
-        if (this.rB.velocity.x > 0.1)
+        if (this.rB.velocity.x > .25f)
             this.sR.flipX = false;
-        else if (this.rB.velocity.x < -0.1)
+        else if (this.rB.velocity.x < -.25f)
             this.sR.flipX = true;
     }
 
