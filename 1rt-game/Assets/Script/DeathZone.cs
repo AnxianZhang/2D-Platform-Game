@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 public class DeathZone : MonoBehaviour
 {
     private Transform spawnPoint;
-    private Animator loadSys;
 
     private void Start()
     {
         this.spawnPoint = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Transform>();
-        this.loadSys = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
