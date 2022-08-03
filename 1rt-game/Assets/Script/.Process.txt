@@ -2,24 +2,26 @@
 	- Always init attributs in the start or awake function. Cause this is better and there is the "encapsulation" aspect.
 
 Component added:
-	- Rigidbody 2D: apply physics, enable to move the player
-			- Interpolat param: none to extrapolate (with that the player will be able de "know" the position of his next frame)
-	- Box Collider 2D: apply an hit-box
+	- Rigidbody 2D: apply physics, enable to move the player.
+			- Interpolat param: none to extrapolate (with that the player will be able de "know" the position of his next frame).
+	- Box Collider 2D: apply an hit-box.
 			- if "Is Triger" is apply --> means that this GO can be crossed by another one
-	- Tilesmap Collider 2D: allow to not go through the enviroment
-	- Canvas: for image in front of all other components
-			- the higher the image in the hierarchy, the further back the images will be
+	- Tilesmap Collider 2D: allow to not go through the enviroment.
+	- Canvas: for image in front of all other components.
+			- the higher the image in the hierarchy, the further back the images will be.
 	
-	- Physics Material 2D: to patch the friction (the quantity which prevents surfaces from sliding off each other)
+	- Physics Material 2D: to patch the friction (the quantity which prevents surfaces from sliding off each other).
 
-	- LayerMask: for ignoring a few gO
+	- LayerMask: for ignoring a few gO.
 
 
 Tips: 
-	- To make a new scene we need to: 1. create a empty one
-									  2. add in Scenes In Build (in Build setting)
-									  3. only preserve "new gO" in the new scene
-									  4. do not forget the spawn point
-	- Searche en game object (see Spawning class): GameObject.FindGameObjectWithTag("<Nametag>")
+	- To make a new scene we need to: 1. create a empty one;
+									  2. add in Scenes In Build (in Build setting);
+									  3. only preserve "new gO" in the new scene;
+									  4. do not forget the spawn point.
+	- Searche en game object (@see Spawning class): GameObject.FindGameObjectWithTag("<Nametag>").
 	- See GameOToNotDestroy class (preseve an amout of game object within a scene, those object will be transfered in the next scene
-								   without resetting the progression acquiered
+								   without resetting the progression acquiered.
+	- To get agO child component we need to write the transform firt, then chosing the idx for the child gO with (e.g animator.transform.getChild(0).getComponent<Animator>()).
+		(PS: gameObject.getComponentInChild<Animator>() doesn't work.

@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         this.rB = gameObject.GetComponent<Rigidbody2D>();
-        this.groundCheck = transform.GetChild(0).GetComponentInChildren<Transform>();
+        this.groundCheck = transform.GetChild(0).GetComponent<Transform>();
         this.animator = gameObject.GetComponent<Animator>();
         this.sR = gameObject.GetComponent<SpriteRenderer>();
         this.velocity = Vector3.zero;// initialize to (0, 0, 0) 

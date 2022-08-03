@@ -7,7 +7,7 @@ TagManager:
   - Coins
   - Health
   - FadeSystem
-  - SpawnPoint
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
