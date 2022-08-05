@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private const float GROUD_CHECK_RADIUS = .36f;
-    private const float MOVE_SPEED = 250;
+    private const float MOVE_SPEED = 5;
     private const float JUMP_FORCE = 250;
 
     public LayerMask ignoreLayer;
@@ -13,8 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sR; // player visual
 
-    private bool isJumping;
-    private bool isOnGroud;
+    public bool isJumping;
+    public bool isOnGroud;
+    public bool isClimbing;
+
+    private float hMovement;
+    private float vMovement;
 
     private Vector3 velocity;
 
@@ -29,7 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update() // input is always here
     {
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && this.isOnGroud)
+        this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
+        this.vMovement = 0f;
+        if (isClimbing)
+            vMovement = Input.GetAxis("Vertical") * MOVE_SPEED;
+
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && this.isOnGroud && !this.isClimbing)
             this.isJumping = true;
         
         flip();
@@ -38,25 +47,39 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate() // in relation with physics ex: all madifiction with rigidbody (e.g velocity)
     {
-        float hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED * Time.deltaTime;
 
         //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
         this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
+        //this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, 64 + 128); // Checks if a Collider falls within a circle area
 
-        movePlayer(hMovement);
+        movePlayer();
     }
 
-    void movePlayer(float _hMovement)
+    void movePlayer()
     {
-        
-        if (this.isJumping && this.isOnGroud)
+        //Vector3 targetVelocity;
+        if (!isClimbing)
         {
-            this.rB.AddForce(new Vector2(0f, JUMP_FORCE));
-            this.isJumping = false;
+            //print("no");
+            if (this.isJumping && this.isOnGroud)
+            {
+                this.rB.AddForce(new Vector2(0f, JUMP_FORCE));
+                this.isJumping = false;
+            }
+
+            //targetVelocity = new Vector2(this.hMovement, this.rB.velocity.y);
+            //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
+            this.rB.velocity = new Vector2(this.hMovement, this.rB.velocity.y);
+
+        }
+        else
+        {
+            //print("yes");
+            //targetVelocity = new Vector2(0, this.vMovement);
+            //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
+            this.rB.velocity = new Vector2(this.hMovement, this.vMovement);
         }
 
-        Vector3 targetVelocity = new Vector2(_hMovement, this.rB.velocity.y);
-        this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
     }
 
     void flip()
@@ -71,5 +94,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(groundCheck.position, GROUD_CHECK_RADIUS);
+    }
+
+    public void setIsClimbing(bool state)
+    {
+        this.isClimbing = state;
     }
 }
