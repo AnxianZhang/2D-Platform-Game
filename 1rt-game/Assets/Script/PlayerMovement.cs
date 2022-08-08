@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float hMovement;
     private float vMovement;
 
-    private Vector3 velocity;
+   // private Vector3 velocity;
 
     private void Start()
     {
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         this.groundCheck = transform.GetChild(0).GetComponent<Transform>();
         this.animator = gameObject.GetComponent<Animator>();
         this.sR = gameObject.GetComponent<SpriteRenderer>();
-        this.velocity = Vector3.zero;// initialize to (0, 0, 0) 
+        //this.velocity = Vector3.zero;// initialize to (0, 0, 0) 
     }
 
     private void Update() // input is always here
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     void movePlayer()
     {
         //Vector3 targetVelocity;
-        if (!isClimbing)
+        if (!this.isClimbing)
         {
             //print("no");
             if (this.isJumping && this.isOnGroud)
@@ -70,15 +70,12 @@ public class PlayerMovement : MonoBehaviour
             //targetVelocity = new Vector2(this.hMovement, this.rB.velocity.y);
             //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
             this.rB.velocity = new Vector2(this.hMovement, this.rB.velocity.y);
-
         }
         else
-        {
+            this.rB.velocity = new Vector2(this.hMovement, this.vMovement);
             //print("yes");
             //targetVelocity = new Vector2(0, this.vMovement);
             //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
-            this.rB.velocity = new Vector2(this.hMovement, this.vMovement);
-        }
 
     }
 
