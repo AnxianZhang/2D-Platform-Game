@@ -33,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update() // input is always here
     {
+       // if(this.isClimbing)
+
         this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
         this.vMovement = 0f;
-        if (isClimbing)
-            vMovement = Input.GetAxis("Vertical") * MOVE_SPEED;
+        if (this.isClimbing)
+            this.vMovement = Input.GetAxis("Vertical") * MOVE_SPEED;
 
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && this.isOnGroud && !this.isClimbing)
             this.isJumping = true;

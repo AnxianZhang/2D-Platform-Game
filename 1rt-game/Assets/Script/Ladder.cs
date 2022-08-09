@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
     private bool isInRange;
+    //private bool isTrigger = false;
     private PlayerMovement pM;
     private EdgeCollider2D eC;
 
@@ -33,10 +34,16 @@ public class Ladder : MonoBehaviour
 
     private void Update()
     {
-        //if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) && this.isInRange)
-        //{
-        //    this.eC.isTrigger = true; 
-        //}
+        if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && this.isInRange)
+        {
+            //this.isTrigger = true;
+            this.eC.isTrigger = true;
+            this.pM.setIsClimbing(true);
+
+//            print("oui");
+        }
+        //if (!this.isInRange)
+        //    this.isTrigger = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,10 +51,9 @@ public class Ladder : MonoBehaviour
         //position = collision.transform.position.y - ;
         if (collision.transform.CompareTag("Player"))
         {
-            //this.isInRange = true;
+            this.isInRange = true;
             //if (position.y < 0 && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
-            this.eC.isTrigger = true;
-            this.pM.setIsClimbing(true);
+            
         }
     }
 
@@ -55,7 +61,7 @@ public class Ladder : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            //this.isInRange = false;
+            this.isInRange = false;
             this.pM.setIsClimbing(false);
             this.eC.isTrigger = false;
         }
