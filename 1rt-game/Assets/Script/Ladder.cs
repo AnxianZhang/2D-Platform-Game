@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ladder : MonoBehaviour
@@ -7,14 +6,17 @@ public class Ladder : MonoBehaviour
     private bool isInRange;
     //private bool isTrigger = false;
     private PlayerMovement pM;
-    private EdgeCollider2D eC;
+    private EdgeCollider2D[] eC ;
+    private Animator animator;
+    private BoxCollider2D bC;
 
     private Vector2 position;
 
     private void Start()
     {
         this.pM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        this.eC = GameObject.FindGameObjectWithTag("LadderPlat").GetComponent<EdgeCollider2D>();
+        this.eC = GameObject.FindGameObjectWithTag("LadderPlat").GetComponents<EdgeCollider2D>();
+        this.animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
     }
 
     //private void Update()
@@ -32,17 +34,24 @@ public class Ladder : MonoBehaviour
     //    }
     //}
 
+    private void setTrigger(bool state)
+    {
+        foreach (EdgeCollider2D eC in this.eC)
+            eC.isTrigger = state;
+    }
+
     private void Update()
     {
         if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && this.isInRange)
         {
             //this.isTrigger = true;
-            this.eC.isTrigger = true;
+            setTrigger(true);
             this.pM.setIsClimbing(true);
-
-//            print("oui");
-        }
-        //if (!this.isInRange)
+            this.animator.SetBool("isClimbing", true);
+            //print("oui");
+        }//else
+        //    this.animator.SetBool("isClimbing", false);
+        ////if (!this.isInRange)
         //    this.isTrigger = false;
     }
 
@@ -53,7 +62,6 @@ public class Ladder : MonoBehaviour
         {
             this.isInRange = true;
             //if (position.y < 0 && (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)))
-            
         }
     }
 
@@ -63,7 +71,14 @@ public class Ladder : MonoBehaviour
         {
             this.isInRange = false;
             this.pM.setIsClimbing(false);
-            this.eC.isTrigger = false;
+            //this.eC.isTrigger = false;
+            this.animator.SetBool("isClimbing", false);
+            StartCoroutine(showCollider());
         }
+    }
+    private IEnumerator showCollider()
+    {
+        yield return new WaitForSeconds(.3f);
+        setTrigger(false);
     }
 }
