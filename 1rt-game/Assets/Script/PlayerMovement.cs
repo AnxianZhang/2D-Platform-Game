@@ -74,7 +74,10 @@ public class PlayerMovement : MonoBehaviour
             this.rB.velocity = new Vector2(this.hMovement, this.rB.velocity.y);
         }
         else
+        {
+            this.isJumping = false;
             this.rB.velocity = new Vector2(this.hMovement, this.vMovement);
+        }
             //print("yes");
             //targetVelocity = new Vector2(0, this.vMovement);
             //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
@@ -93,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(groundCheck.position, GROUD_CHECK_RADIUS);
+    }
+
+    public bool getIsOnground()
+    {
+        return this.isOnGroud;
     }
 
     public void setIsClimbing(bool state)
