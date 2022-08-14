@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SnakeAttaque : MonoBehaviour
 {
-    private const uint DAMAGEDEAL = 5;
+    private const int DAMAGEDEAL = 5;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

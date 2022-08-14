@@ -80,8 +80,7 @@ public class PlayerMovement : MonoBehaviour
         }
             //print("yes");
             //targetVelocity = new Vector2(0, this.vMovement);
-            //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05f);
-
+            //this.rB.velocity = Vector3.SmoothDamp(this.rB.velocity, targetVelocity, ref this.velocity, 0.05
     }
 
     void flip()

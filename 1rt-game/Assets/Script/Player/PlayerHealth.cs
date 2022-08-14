@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private uint maxHealth = 100;
-    private uint currentHealth;
+    private int maxHealth = 100;
+    private int currentHealth;
 
     private bool isImun = false;
     private const float WAITIING_TIME = .125f;
@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer sR;
     private HealthBar healthBar;
+    private Animator animator;
+    private PlayerMovement pM;
 
     private void Awake()
     {
@@ -19,17 +21,28 @@ public class PlayerHealth : MonoBehaviour
         this.healthBar = GameObject.FindGameObjectWithTag("Health").GetComponent<HealthBar>();
         this.healthBar.initHealth(this.currentHealth);
         this.sR = gameObject.GetComponent<SpriteRenderer>();
+        this.animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        this.pM = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H)) //test
-            takeDamage(20);
+            takeDamage(60);
     }
 
-    public void takeDamage(uint amount)
+    private void die()
+    {
+        this.pM.enabled = false;
+        this.currentHealth = 0;
+        this.healthBar.setHealth(this.currentHealth);
+        this.animator.SetTrigger("isDied");
+    }
+
+    public void takeDamage(int amount)
     {
         if (!isImun)
+        {
             if (currentHealth - amount > 0)
             {
                 currentHealth -= amount;
@@ -37,6 +50,9 @@ public class PlayerHealth : MonoBehaviour
                 StartCoroutine(imunityTime());
                 StartCoroutine(imunity());
             }
+            else
+                die();
+        }
     }
 
     private IEnumerator imunity()

@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     //    this.healthBar = gameObject.GetComponent<Slider>();
     //}
 
-    public void initHealth(uint amount)
+    public void initHealth(int amount)
     {
         this.healthBar.maxValue = amount;
         this.healthBar.value = amount;
@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
         this.fill.color = gradient.Evaluate(1f); // the value A [0, 1] <=> [0%, 100%] of a color asigned in the gradient component
     }
 
-    public void setHealth(uint amount)
+    public void setHealth(int amount)
     {
         this.healthBar.value = amount;
         this.fill.color = gradient.Evaluate(this.healthBar.normalizedValue);
