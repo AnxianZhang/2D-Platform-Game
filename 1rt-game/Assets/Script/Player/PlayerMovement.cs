@@ -3,8 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private const float GROUD_CHECK_RADIUS = .36f;
-    private const float MOVE_SPEED = 5;
     private const float JUMP_FORCE = 250;
+
+    private float MOVE_SPEED = 5;
 
     public LayerMask ignoreLayer;
     public Transform groundCheck; // this attribut in public is necessary, otherwise OnDrawGizmos will be unuseble
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isOnGroud;
     public bool isClimbing;
-
+    //public bool isDied;
     private float hMovement;
     private float vMovement;
 
@@ -33,28 +34,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update() // input is always here
     {
-       // if(this.isClimbing)
+        // if(this.isClimbing)
 
-        this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
-        this.vMovement = 0f;
-        if (this.isClimbing)
-            this.vMovement = Input.GetAxis("Vertical") * MOVE_SPEED;
+        //if (!this.isDied)
+        //{
+            this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
+            this.vMovement = 0f;
+            if (this.isClimbing)
+                this.vMovement = Input.GetAxis("Vertical") * MOVE_SPEED;
 
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && this.isOnGroud && !this.isClimbing)
-            this.isJumping = true;
-        
-        flip();
-        float playerVelocity = Mathf.Abs(this.rB.velocity.x); // absolut value
-        this.animator.SetFloat("Speed", playerVelocity);
+            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && this.isOnGroud && !this.isClimbing)
+                this.isJumping = true;
+
+            flip();
+            float playerVelocity = Mathf.Abs(this.rB.velocity.x); // absolut value
+            this.animator.SetFloat("Speed", playerVelocity);
+        //}
     }
     void FixedUpdate() // in relation with physics ex: all madifiction with rigidbody (e.g velocity)
     {
+        //if (!this.isDied)
+        //{
+            //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
+            this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
+                                                                                                             //this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, 64 + 128); // Checks if a Collider falls within a circle area
 
-        //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
-        this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
-        //this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, 64 + 128); // Checks if a Collider falls within a circle area
-
-        movePlayer();
+            movePlayer();
+        //}
     }
 
     void movePlayer()
@@ -95,6 +101,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(groundCheck.position, GROUD_CHECK_RADIUS);
+        MOVE_SPEED = 0;
+    }
+
+    public void unMoveble()
+    {
+        this.enabled = false;
+        this.rB.velocity = new Vector2(0, 0);
+        this.rB.bodyType = RigidbodyType2D.Kinematic;
+        //this.isDied = true;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
     public bool getIsOnground()

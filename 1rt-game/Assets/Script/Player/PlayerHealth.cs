@@ -32,11 +32,12 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void die()
-    {
-        this.pM.enabled = false;
+    { 
+        this.pM.unMoveble();
         this.currentHealth = 0;
         this.healthBar.setHealth(this.currentHealth);
         this.animator.SetTrigger("isDied");
+        GameObjtManager.getGameObjtManager().showSceen();
     }
 
     public void takeDamage(int amount)
