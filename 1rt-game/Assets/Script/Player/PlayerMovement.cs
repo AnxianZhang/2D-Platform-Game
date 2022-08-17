@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isOnGroud;
     public bool isClimbing;
-    //public bool isDied;
+    public bool isDied;
     private float hMovement;
     private float vMovement;
 
@@ -36,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // if(this.isClimbing)
 
-        //if (!this.isDied)
-        //{
+        if (!this.isDied)
+        {
             this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
             this.vMovement = 0f;
             if (this.isClimbing)
@@ -49,18 +49,18 @@ public class PlayerMovement : MonoBehaviour
             flip();
             float playerVelocity = Mathf.Abs(this.rB.velocity.x); // absolut value
             this.animator.SetFloat("Speed", playerVelocity);
-        //}
+        }
     }
     void FixedUpdate() // in relation with physics ex: all madifiction with rigidbody (e.g velocity)
     {
-        //if (!this.isDied)
-        //{
+        if (!this.isDied)
+        {
             //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
             this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
                                                                                                              //this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, 64 + 128); // Checks if a Collider falls within a circle area
 
             movePlayer();
-        //}
+        }
     }
 
     void movePlayer()
@@ -106,10 +106,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void unMoveble()
     {
-        this.enabled = false;
-        this.rB.velocity = new Vector2(0, 0);
-        this.rB.bodyType = RigidbodyType2D.Kinematic;
-        //this.isDied = true;
+        //this.enabled = false;
+        //this.rB.velocity = new Vector2(0, 0);
+        //this.rB.bodyType = RigidbodyType2D.Kinematic
+        this.rB.bodyType = RigidbodyType2D.Static;
+        this.isDied = true;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
 

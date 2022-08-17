@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameObjtManager : MonoBehaviour
+public class GameOverManager : MonoBehaviour
 {
     private GameObject gameOverSceen;
-    private static GameObjtManager instance;
+    private static GameOverManager instance;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class GameObjtManager : MonoBehaviour
         this.gameOverSceen.SetActive(false);
     }
 
-    public static GameObjtManager getGameObjtManager()
+    public static GameOverManager getGameOverManager()
     {
         return instance;
     }

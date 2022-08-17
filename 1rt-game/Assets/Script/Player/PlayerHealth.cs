@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         this.currentHealth = 0;
         this.healthBar.setHealth(this.currentHealth);
         this.animator.SetTrigger("isDied");
-        GameObjtManager.getGameObjtManager().showSceen();
+        GameOverManager.getGameOverManager().showSceen();
     }
 
     public void takeDamage(int amount)
