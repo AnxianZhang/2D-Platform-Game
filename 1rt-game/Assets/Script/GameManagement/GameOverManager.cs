@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameOverManager : MonoBehaviour
 {
     private GameObject gameOverSceen;
+    private PlayerHealth pH;
     private static GameOverManager instance;
 
     private void Awake()
@@ -19,12 +19,8 @@ public class GameOverManager : MonoBehaviour
 
     private void Start()
     {
+        this.pH = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         this.gameOverSceen = GameObject.FindGameObjectWithTag("GameOver");
-        if (gameOverSceen == null)
-        {
-            Debug.Log("non");
-            return;
-        }
         this.gameOverSceen.SetActive(false);
     }
 
@@ -36,5 +32,23 @@ public class GameOverManager : MonoBehaviour
     public void showSceen()
     {
         this.gameOverSceen.SetActive(true);
+    }
+
+    public void restartButton()
+    {
+        
+        this.gameOverSceen.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // laod active scene, enable by getting the scene idx
+        //this.pH.revive();
+    }
+
+    public void menuButton()
+    {
+
+    }
+
+    public void quitButton()
+    {
+        Application.Quit();
     }
 }
