@@ -115,11 +115,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void moveble()
     {
-        this.animator.SetTrigger("revive");
         //this.sR.enabled = false;
         this.rB.bodyType = RigidbodyType2D.Dynamic;
         this.isDied = false;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        this.animator.SetTrigger("revive");
     }
 
     public bool getIsOnground()

@@ -36,10 +36,10 @@ public class GameOverManager : MonoBehaviour
 
     public void restartButton()
     {
-        
-        this.gameOverSceen.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // laod active scene, enable by getting the scene idx
-        //this.pH.revive();
+        this.pH.revive();
+        this.gameOverSceen.SetActive(false);
+        Inventory.getInventory().laodNbCoinsBeforeEnteringInScene();
     }
 
     public void menuButton()

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     private uint nbCoins = 0;
+    private uint nbCoinsBeforEnterInScene = 0;
 
     private Text showCoins;
 
@@ -24,6 +25,22 @@ public class Inventory : MonoBehaviour
         this.showCoins = GameObject.FindGameObjectWithTag("Coins").GetComponentInChildren<Text>();
     }
 
+    public void saveCoinsBeforeEnteringInScene()
+    {
+        this.nbCoinsBeforEnterInScene = this.nbCoins;
+    }
+
+    public void laodNbCoinsBeforeEnteringInScene()
+    {
+        this.nbCoins = this.nbCoinsBeforEnterInScene;
+        this.showCoins.text = this.nbCoins.ToString();
+    }
+
+    public uint getCoins()
+    {
+        return this.nbCoins;
+    }
+
     public static Inventory getInventory()
     {
         return instance;
@@ -33,5 +50,6 @@ public class Inventory : MonoBehaviour
     {
         this.nbCoins += amoutn;
         this.showCoins.text = nbCoins.ToString();
+        Debug.Log(this.nbCoins);
     }
 }

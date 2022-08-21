@@ -45,9 +45,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void revive()
     {
-        this.pM.moveble();
         this.currentHealth = maxHealth;
         this.healthBar.setHealth(this.currentHealth);
+        StartCoroutine(waitForThenMove());
     }
 
     public void takeDamage(int amount)
@@ -65,8 +65,13 @@ public class PlayerHealth : MonoBehaviour
                 die();
         }
     }
+    private IEnumerator waitForThenMove()
+    {
+        yield return new WaitForSeconds(.0625f);
+        this.pM.moveble();
+    }
 
-    private IEnumerator imunity()
+        private IEnumerator imunity()
     {
         this.isImun = true;
         while (this.isImun)

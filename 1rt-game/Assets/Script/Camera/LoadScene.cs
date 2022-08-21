@@ -22,5 +22,6 @@ public class LoadScene : MonoBehaviour
         this.loadSys.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("Level2"); // changeble name
+        Inventory.getInventory().saveCoinsBeforeEnteringInScene();
     }
 }
