@@ -50,6 +50,5 @@ public class Inventory : MonoBehaviour
     {
         this.nbCoins += amoutn;
         this.showCoins.text = nbCoins.ToString();
-        Debug.Log(this.nbCoins);
     }
 }

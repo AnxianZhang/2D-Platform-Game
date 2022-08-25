@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void die()
     {
-
         this.pM.unMoveble();
         this.currentHealth = 0;
         this.healthBar.setHealth(this.currentHealth);
