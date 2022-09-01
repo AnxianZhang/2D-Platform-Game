@@ -44,6 +44,7 @@ public class GameOverManager : MonoBehaviour
 
     public void menuButton()
     {
+        GameOToNotDestroy.getGameOToNotDestroy().moveGOToNotDestroy();
         SceneManager.LoadScene("MainMenu");
     }
 
