@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isOnGroud;
     public bool isClimbing;
-    public bool isDied;
+    public bool isUnmoveble;
     private float hMovement;
     private float vMovement;
 
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // if(this.isClimbing)
 
-        if (!this.isDied)
+        if (!this.isUnmoveble)
         {
             this.hMovement = Input.GetAxis("Horizontal") * MOVE_SPEED;
             this.vMovement = 0f;
@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate() // in relation with physics ex: all madifiction with rigidbody (e.g velocity)
     {
-        if (!this.isDied)
+        if (!this.isUnmoveble)
         {
             //this.isOnGroud = Physics2D.OverlapArea(this.groundCheckLeft.position, this.groundCheckRight.position); // Checks if a Collider falls within a rectangular area
             this.isOnGroud = Physics2D.OverlapCircle(groundCheck.position, GROUD_CHECK_RADIUS, ignoreLayer); // Checks if a Collider falls within a circle area
@@ -108,16 +108,16 @@ public class PlayerMovement : MonoBehaviour
     {
         //this.enabled = false;
         //this.rB.velocity = new Vector2(0, 0);
-        //this.rB.bodyType = RigidbodyType2D.Kinematic
+        //this.rB.bodyType = RigidbodyType2D.Kinematic;
         this.rB.bodyType = RigidbodyType2D.Static;
-        this.isDied = true;
+        this.isUnmoveble = true;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
     }
     public void moveble()
     {
         //this.sR.enabled = false;
         this.rB.bodyType = RigidbodyType2D.Dynamic;
-        this.isDied = false;
+        this.isUnmoveble = false;
         gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         this.animator.SetTrigger("revive");
     }
