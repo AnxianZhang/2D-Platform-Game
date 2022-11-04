@@ -22,6 +22,9 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
             if (!this.isPaused) pause(); 
             else resumeButton();
+
+        if (!this.isPaused && this.setting.activeSelf)
+            this.setting.SetActive(false);
     }
 
     private void pause()
