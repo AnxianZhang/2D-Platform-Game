@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CurrentSceneManager : MonoBehaviour
 {
     public bool hasPlayer;
 
     private static CurrentSceneManager instance;
+    private AudioMixer audioMixer;
 
     private void Awake()
     {

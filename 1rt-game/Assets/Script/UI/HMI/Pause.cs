@@ -53,4 +53,9 @@ public class Pause : MonoBehaviour
     {
         this.setting.SetActive(true);
     }
+
+    public bool getIsPaused()
+    {
+        return this.isPaused;
+    }
 }
